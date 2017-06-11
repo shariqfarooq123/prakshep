@@ -8,7 +8,6 @@ networkx==1.11
 numpy==1.13.0
 olefile==0.44
 Pillow==4.1.1
-pycairo==1.10.0
 pyparsing==2.1.4
 pytesseract==0.1.7
 python-dateutil==2.6.0
