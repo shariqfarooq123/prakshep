@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prakshep OCR browsable API</title>
+
+</head>
+<body>
+<h1>Upload the card!</h1>
+<form action="/ocrapi/{{ card }}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
