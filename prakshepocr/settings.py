@@ -25,7 +25,7 @@ SECRET_KEY = 't0k6j3j$sg%-b207xbad^4g#o2idz2bdf7gxy6b#xe_a36e#ip'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['prakshep.herokuapp.com']
+ALLOWED_HOSTS = ['prakshep.herokuapp.com','127.0.0.1']
 
 
 # Application definition
