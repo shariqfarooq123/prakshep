@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from .views import OcrApiPan, OcrApiAadhaar
+from .views import OcrApiPan, OcrApiAadhaar, home
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^ocrapi/pan', OcrApiPan.as_view()),
     url(r'^ocrapi/aadhaar', OcrApiAadhaar.as_view()),
+    url(r'^', home),
 
 ]

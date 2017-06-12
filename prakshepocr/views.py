@@ -66,3 +66,8 @@ class OcrApiAadhaar(OcrApi):
 
     def get_card_type(self):
         return "aadhaar"
+
+
+
+def home(request):
+    render(request,'home.html')
