@@ -95,7 +95,7 @@ class Extractor(object):
         # Initiate SIFT detector
         sift = cv2.SIFT()
 
-        print "Computing sift..."
+       # print "Computing sift..."
         # find the keypoints and descriptors with SIFT
         kp1, des1 = sift.detectAndCompute(template, None)
         kp2, des2 = sift.detectAndCompute(img, None)
@@ -105,9 +105,9 @@ class Extractor(object):
         search_params = dict(checks=50)
 
         flann = cv2.FlannBasedMatcher(index_params, search_params)
-        print "FLANN matching..."
+        #print "FLANN matching..."
         matches = flann.knnMatch(des1, des2, k=2)
-        print "done"
+        #print "done"
         # store all the good matches as per Lowe's ratio test.
         good = []
         for m, n in matches:
@@ -121,7 +121,7 @@ class Extractor(object):
             warped = cv2.warpPerspective(img, H, (template.shape[1], template.shape[0]))
             return warped
         else:
-            print "Not enough matches are found - %d/%d" % (len(good), self.MIN_MATCH_COUNT)
+         #   print "Not enough matches are found - %d/%d" % (len(good), self.MIN_MATCH_COUNT)
             return None
 
     def extract(self,img):
@@ -141,7 +141,7 @@ class Extractor(object):
         scene_size = (1024,1024)
 
         for template_size in template_sizes:
-            print "Trying template_size = {} and scene_size = {}".format(template_size,scene_size)
+          #  print "Trying template_size = {} and scene_size = {}".format(template_size,scene_size)
             card = self._extract_card(img,template_size,scene_size)
             if card is not None:
                 break
@@ -149,7 +149,7 @@ class Extractor(object):
             # This is a for-else loop (if you're not familiar)
             # (Control is brought here when) Above for loop completed normally without encountering break statement
             # Couldn't extract card!!
-            print "Failed to extract card! Make sure emblem is clearly visible!"
+           # print "Failed to extract card! Make sure emblem is clearly visible!"
             return None
 
 
