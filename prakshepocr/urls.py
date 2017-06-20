@@ -15,11 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from .views import OcrApiPan, OcrApiAadhaar, home
+from .views import OcrApi,BrowsableApi
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^ocrapi/pan', OcrApiPan.as_view()),
-    url(r'^ocrapi/aadhaar', OcrApiAadhaar.as_view()),
-    url(r'^', home),
+    url(r'^ocrapi/(?P<card_type>pan|aadhaar)/(?P<mode>fit|raw)', OcrApi.as_view()),
+    url(r'^ocrapi/(?P<card_type>pan|aadhaar)/(?P<mode>bounded)/(?P<bounds>\[\[[0-9]+,[0-9]+\],\[[0-9]+,[0-9]+\],\[[0-9]+,[0-9]+\],\[[0-9]+,[0-9]+\]\])$', OcrApi.as_view()),
+    url(r'^',BrowsableApi.as_view() ),
 
 ]

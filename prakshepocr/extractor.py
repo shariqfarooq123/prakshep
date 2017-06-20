@@ -105,6 +105,7 @@ class Extractor(object):
         :param img: ndarray; fitted card image
         :return: python dict; mapping field names to field values
         """
+        img = imresize(img,(512,1024))
         block_size = 35
         adaptive_thresh = threshold_local(img, block_size, offset=10)
         binary_adaptive = (img > adaptive_thresh).astype('int')
@@ -154,7 +155,7 @@ class Extractor(object):
 
         index_params = dict(algorithm=FLANN_INDEX_KDTREE, trees=5)
         # index_params = dict(algorithm=FLANN_INDEX_LSH,table_number=12,key_size=20,multi_probe_level=2) # ORB
-        search_params = dict(checks=100)
+        search_params = dict(checks=50)
 
         flann = cv2.FlannBasedMatcher(index_params, search_params)
         self.log("FLANN matching...")
@@ -283,12 +284,13 @@ class Extractor(object):
             # (Control is brought here when) Above for loop completed normally without encountering break statement
             # Couldn't extract card!!
             self.log("Failed to extract card! Make sure emblem is clearly visible!")
-            return None
+            return dict(message="failed to extract card")
+            # return None
 
         data = self._parse_card(card)
-
-        data = self.filter(data)
-        return data
+        status = "None" if data is None else "Present"
+        filtered = self.filter(data)
+        return dict(message="succes {}".format(status),raw=data,filtered=filtered)
 
     def _filter_field(self, pattern, field, **kwargs):
         """
@@ -328,7 +330,7 @@ class Extractor(object):
                         uid="[0-9]{4}",
                         parent="[A-Za-z]+",
                         name="[A-Za-z]+",
-                        pan="[A-Z0-9]",
+                        pan="[A-Z0-9a-z]",
                         dob="[0-9/]+")
 
         getlen = lambda x: 3 if x == 'uid' else None

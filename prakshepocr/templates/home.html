@@ -5,7 +5,10 @@
     <title>OCR Browsable Api by Prakshep</title>
 </head>
 <body>
-<a href="/ocrapi/pan">PAN</a>
-<a href="/ocrapi/aadhaar">Aadhaar</a>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
 </body>
 </html>
