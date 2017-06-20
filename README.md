@@ -24,7 +24,7 @@ To install conda modules:
 ## Usage
 For web interface, start a server using:
 ``` 
-python manage.py startserver
+python manage.py runserver
 ```
 
 The Command Line Interface (CLI) is provided by `prakshepocr/extract_cli.py`
