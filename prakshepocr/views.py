@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.views import View
 from .forms import UploadImageForm,BrowsableForm
@@ -20,6 +21,10 @@ class OcrApi(View):
     """
     Base class for handling image upload in pure JSON
     """
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(ChromeLoginView, self).dispatch(request, *args, **kwargs
+
     def post(self,request,**kwargs):
         form = UploadImageForm(request.POST,request.FILES)
         if form.is_valid():
