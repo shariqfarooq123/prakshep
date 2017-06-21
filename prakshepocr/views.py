@@ -23,7 +23,7 @@ class OcrApi(View):
     """
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
-        return super(ChromeLoginView, self).dispatch(request, *args, **kwargs
+        return super(ChromeLoginView, self).dispatch(request, *args, **kwargs)
 
     def post(self,request,**kwargs):
         form = UploadImageForm(request.POST,request.FILES)
